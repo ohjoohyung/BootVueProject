@@ -10,20 +10,17 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name="user")
+@RequiredArgsConstructor
+@Table(name="user",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = "username"),
+            @UniqueConstraint(columnNames = "email")
+        })
 public class User {
 
     @Id
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String userPwd;
 
-    private String userName;
-
-    @Builder
-    public User(String userId, String userPwd, String userName) {
-        this.setUserId(userId);
-        this.setUserPwd(userPwd);
-        this.setUserName(userName);
-    }
 }
