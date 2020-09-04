@@ -1,11 +1,12 @@
 <template>
   <div>
+    메인입니당
   </div>
 </template>
 
 <script>
 export default {
-  name: "Header"
+  name: "Body"
 }
 </script>
 
