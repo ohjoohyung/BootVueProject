@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class BoardService {
@@ -33,4 +34,24 @@ public class BoardService {
         }
         return  resultMap;
     }
+
+    //게시글 상세보기
+    public Map<String, Object> readBoard(Long id) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        Optional<Board> getBoard = boardRepository.findById(id);
+
+        if(getBoard.isPresent()) {
+            resultMap.put("result", 1);
+            resultMap.put("board", getBoard);
+        } else {
+            resultMap.put("result", -1);
+            resultMap.put("msg", "존재하지 않는 게시글 입니다.");
+        }
+        return resultMap;
+    }
+
+    //게시글 수정하기
+
+    //게시글 삭제하기기
 }
