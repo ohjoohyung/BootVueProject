@@ -24,15 +24,15 @@ public class BoardController {
         return boardService.readBoard(id);
     }
 
-   /* @PostMapping("/modify")
+   @PostMapping("/modify")
     public Map<String, Object> modify(@RequestBody Board board) {
         return boardService.updateBoard(board);
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/delete/{id}")
     public Map<String, Object> delete(@PathVariable Long id) {
         return boardService.deleteBoard(id);
-    }*/
+    }
 
 
 }
