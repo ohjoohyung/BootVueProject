@@ -3,6 +3,9 @@ package com.example.demo.service;
 import com.example.demo.entitiy.Board;
 import com.example.demo.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -12,6 +15,9 @@ import java.util.Optional;
 
 @Service
 public class BoardService {
+
+    @Value("${board.pagesize}")
+    private int pageSize;
 
     @Autowired
     private BoardRepository boardRepository;
@@ -85,7 +91,7 @@ public class BoardService {
         return resultMap;
     }
 
-    //게시글 삭제하기기
+    //게시글 삭제하기
     public Map<String, Object> deleteBoard(Long id) {
         Map<String, Object> resultMap = new HashMap<>();
 
@@ -105,4 +111,12 @@ public class BoardService {
         }
         return resultMap;
     }
+
+    //게시글 리스트 조회
+    public Map<String, Object> readBoardList(int pageNo) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("list", boardRepository.findAll(PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"))));
+        return resultMap;
+    }
+
 }

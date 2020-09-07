@@ -24,7 +24,14 @@ export default {
     logout() {
 
       //로그아웃 mutations 실행 후 리다이렉트
-      store.dispatch("LOGOUT").then(() => this.$router.push("/"))
+      store.dispatch("LOGOUT")
+          .then(() => this.$router.push("/")
+          .catch(err => {
+            if(err.name != "NavigationDuplicated") {
+              throw err;
+            }
+          })
+      )
     }
   }
 }

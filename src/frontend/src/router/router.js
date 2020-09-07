@@ -5,7 +5,8 @@ import Body from "@/components/main/body/Body";
 import Join from "@/components/join/Join";
 import Login from "@/components/login/Login";
 import Me from "@/components/user/Me";
-
+import Write from "@/components/board/Write";
+import Content from "@/components/board/Content";
 Vue.use(Router)
 
 const requireAuth = () => (from, to, next) => {
@@ -40,6 +41,15 @@ export const router = new Router({
             name: 'Me',
             component: Me,
             beforeEnter: requireAuth()
+        },
+        {
+            path: '/write',
+            name: "Write",
+            component: Write
+        },
+        {
+            path: '/content/:id',
+            component: Content
         }
     ]
 

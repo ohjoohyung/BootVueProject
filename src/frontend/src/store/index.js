@@ -1,7 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
 import axios from "axios"
-
+/*import jwt_decode from 'jwt_decode'*/
 Vue.use(Vuex)
 
 /*const resourceHost = "http://localhost:8081/api"*/
@@ -13,13 +13,26 @@ const enhanceAccessToken = () => {
 }
 enhanceAccessToken()
 
+const parseJwt = (token) => {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
 export default new Vuex.Store({
     state: {
         accessToken: localStorage.accessToken === null ? null : localStorage.accessToken
     },
     getters: {
         isAuthenticated: function (state) {
-            return state.accessToken
+            return state.accessToken;
+        },
+       getUserName: function (state) {
+            return parseJwt(state.accessToken).name;
         }
     },
     mutations: {
@@ -57,6 +70,7 @@ export default new Vuex.Store({
             commit("LOGOUT")
         }
     },
+
 
 
 })

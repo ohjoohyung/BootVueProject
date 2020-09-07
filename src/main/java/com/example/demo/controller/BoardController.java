@@ -34,5 +34,9 @@ public class BoardController {
         return boardService.deleteBoard(id);
     }
 
+    @GetMapping("/list/{pageNo}")
+    public Map<String, Object> list(@PathVariable int pageNo) {
+        return boardService.readBoardList(pageNo);
+    }
 
 }
