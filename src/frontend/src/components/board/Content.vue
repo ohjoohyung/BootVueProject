@@ -2,11 +2,16 @@
   <div>
     <h1>게시글 상세페이지</h1>
     <div>
-      <p>{{board.userName}}</p>
-      <p>{{board.modifyDate}}</p>
-      <p>{{board.id}}</p>
-      <p>{{board.title}}</p>
-      <p>{{board.content}}</p>
+      <p>작성자: {{board.userName}}</p>
+      <p>작성일: {{board.modifyDate}}</p>
+      <p>글번호: {{board.id}}</p>
+      <p>제 목: {{board.title}}</p>
+      <p>내 용: {{board.content}}</p>
+    </div>
+    <div>
+      <button v-if="userNameCheck === true" @click="board_modify">수정</button>
+      <button v-if="userNameCheck === true" @click="board_delete">삭제</button>
+      <button @click="goBack">뒤로가기</button>
     </div>
 
   </div>
@@ -35,7 +40,7 @@ export default {
   },*/
   computed: {
     userNameCheck() {
-      return this.$store.getters.getUserName === this.board.userName
+        return this.$store.getters.getUserName === this.board.userName
     }
   },
   methods: {
@@ -51,6 +56,29 @@ export default {
       }).catch((err) => {
         window.alert(err)
       })
+    },
+    board_modify() {
+      this.$router.push('/modify/' + this.$route.params.id)
+    },
+    board_delete() {
+      if(window.confirm('게시글을 삭제하시겠습니까?')) {
+        axios.get('/api/delete/'+this.$route.params.id)
+            .then((res) => {
+          window.alert(res.data.msg)
+            if(res.data.result === 1) {
+              this.$router.push('/')
+            }else {
+              this.$router.replace('/')
+            }
+
+        }).catch((err) => {
+          window.alert(err)
+          window.console.log(err)
+        })
+      }
+    },
+    goBack() {
+      this.$router.replace('/')
     }
   }
 }

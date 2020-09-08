@@ -7,6 +7,7 @@ import Login from "@/components/login/Login";
 import Me from "@/components/user/Me";
 import Write from "@/components/board/Write";
 import Content from "@/components/board/Content";
+import Modify from "@/components/board/Modify";
 Vue.use(Router)
 
 const requireAuth = () => (from, to, next) => {
@@ -50,6 +51,10 @@ export const router = new Router({
         {
             path: '/content/:id',
             component: Content
+        },
+        {
+            path: '/modify/:id',
+            component: Modify
         }
     ]
 
