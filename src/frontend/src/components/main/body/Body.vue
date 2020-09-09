@@ -18,6 +18,13 @@
     </table>
     </div>
     <div>
+      <select v-model="selected">
+        <option v-for="option in options" v-bind:key="option.value" v-bind:value="option.value">{{option.text}}</option>
+      </select>
+      <input type="text" v-model="keyWord" placeholder="검색어를 입력해주세요">
+      <button @click="search(selected, keyWord)">검색</button>
+    </div>
+    <div>
       <Paging/>
     </div>
   </div>
@@ -40,7 +47,15 @@ export default {
   data() {
     return {
       list: '',
-      boardList: ''
+      boardList: '',
+      selected: 'titleContent',
+      options: [
+        {text: '제목+내용', value: 'titleContent'},
+        {text: '제목', value: 'title'},
+        {text: '내용', value: 'content'},
+        {text: '작성자', value: 'userName'}
+      ],
+      keyWord: ''
     }
   },
   created() {
@@ -74,6 +89,10 @@ export default {
       },
     enterContent(boardId) {
       this.$router.push('/content/'+boardId)
+    },
+    search(selected, keyWord) {
+      window.alert(selected + keyWord);
+
     }
   }
 }

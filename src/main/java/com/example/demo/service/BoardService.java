@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entitiy.Board;
 import com.example.demo.repository.BoardRepository;
+import com.example.demo.specification.BoardSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -113,9 +114,14 @@ public class BoardService {
     }
 
     //게시글 리스트 조회
-    public Map<String, Object> readBoardList(int pageNo) {
+    public Map<String, Object> readBoardList(int pageNo, Map<String, Object> listParam) {
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("list", boardRepository.findAll(PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"))));
+        System.out.println(listParam);
+        if(!listParam.isEmpty()) {
+            resultMap.put("list", boardRepository.findAll(BoardSpecification.searchBoard(listParam), PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"))));
+        }else {
+            resultMap.put("list", boardRepository.findAll(PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"))));
+        }
         return resultMap;
     }
 

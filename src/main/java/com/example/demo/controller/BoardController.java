@@ -35,8 +35,9 @@ public class BoardController {
     }
 
     @GetMapping("/list/{pageNo}")
-    public Map<String, Object> list(@PathVariable int pageNo) {
-        return boardService.readBoardList(pageNo);
+    public Map<String, Object> list(@PathVariable int pageNo,
+                                    @RequestParam Map<String, Object> listParam) {
+        return boardService.readBoardList(pageNo, listParam);
     }
 
 }
