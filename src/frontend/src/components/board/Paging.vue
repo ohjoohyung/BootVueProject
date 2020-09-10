@@ -1,24 +1,24 @@
 <template>
   <div>
-    <button v-on:click="goPage(1)">&lt;&lt;</button>
-    <button v-on:click="goPage(myPaging.prevPage)">&lt;</button>
+    <button v-on:click="goPage(1, myPaging.selected, myPaging.keyWord)">&lt;&lt;</button>
+    <button v-on:click="goPage(myPaging.prevPage, myPaging.selected, myPaging.keyWord)">&lt;</button>
     <span v-for="index in myPaging.pageNumberList"
           v-bind:key="index"
     >
-      <span v-on:click="goPage(index)"
+      <span v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
             v-if="index === myPaging.pageNumber"
             v-text="index"
             style="font-weight: bold"
       >
       </span>
-      <span v-on:click="goPage(index)"
+      <span v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
             v-else
             v-text="index"
       >
       </span>
     </span>
-    <button v-on:click="goPage(myPaging.nextPage)">&gt;</button>
-    <button v-on:click="goPage(myPaging.endPage)">&gt;&gt;</button>
+    <button v-on:click="goPage(myPaging.nextPage, myPaging.selected, myPaging.keyWord)">&gt;</button>
+    <button v-on:click="goPage(myPaging.endPage, myPaging.selected, myPaging.keyWord)">&gt;&gt;</button>
   </div>
 </template>
 
@@ -35,7 +35,9 @@ export default {
         prevPage: 0, //이전 페이지(이전 페이지 블록)
         nextPage: 0, //다음 페이지(다음 페이지 블록)
         endPage: 0, //끝 페이지
-        pageNumberList: [1] //페이지 번호 리스트
+        pageNumberList: [1], //페이지 번호 리스트
+        selected: '',
+        keyWord: ''
       }
     }
   },
@@ -44,8 +46,8 @@ export default {
   },
   methods: {
     //이벤트 버스
-    goPage(pageNo) {
-      this.$EventBus.$emit('goPage', (pageNo - 1))
+    goPage(pageNo, selected, keyWord) {
+      this.$EventBus.$emit('goPage', (pageNo - 1), selected, keyWord)
     }
   }
 }

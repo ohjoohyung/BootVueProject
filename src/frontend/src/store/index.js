@@ -40,7 +40,9 @@ export default new Vuex.Store({
             prevPage: 0, //이전 페이지(이전 페이지 블록)
             nextPage: 0, //다음 페이지(다음 페이지 블록)
             endPage: 0, //끝 페이지
-            pageNumberList: [1] //페이지 번호 리스트
+            pageNumberList: [1], //페이지 번호 리스트
+            selected: '',
+            keyWord: ''
         }
     },
     getters: {
@@ -77,7 +79,8 @@ export default new Vuex.Store({
             state.paging.pageSize = payload.pageSize;
             state.paging.totalPages = payload.totalPages;
             state.paging.totalElements = payload.totalElements;
-
+            state.paging.selected = payload.selected;
+            state.paging.keyWord = payload.keyWord;
             //이전 페이지 구하기(Math.floor는 내림을 한다)
             if(Math.floor(payload.pageNumber / payload.pageSize) === 0) {
                 state.paging.prevPage = 1;

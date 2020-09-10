@@ -23,10 +23,15 @@ export default {
   methods : {
     onSubmit(email, password) {
       //LOGIN action 실행
-      this.$store
-        .dispatch("LOGIN", {email, password})
-        .then(() => this.redirect())
-        .catch(({message}) => (this.msg = message))
+      if(this.email && this.password) {
+        this.$store
+            .dispatch("LOGIN", {email, password})
+            .then(() => this.redirect())
+            .catch(({message}) => (this.msg = message))
+      }else {
+        window.alert("모든 항목을 입력해주세요.")
+      }
+
     },
     redirect() {
      /* const {search} = window.location

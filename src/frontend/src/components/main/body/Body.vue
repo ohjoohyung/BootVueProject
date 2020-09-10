@@ -60,16 +60,20 @@ export default {
   },
   created() {
     this.fetchData(0)
-    this.$EventBus.$on('goPage', (pageNo) => {
-      this.fetchData(pageNo);
+    this.$EventBus.$on('goPage', (pageNo, selected, keyWord) => {
+      this.fetchData(pageNo, selected, keyWord);
     })
   },
   watch: {
     '$route' : 'fetchData'
   },
   methods: {
-    fetchData(pageNo) {
-      axios.get('/api/list/'+pageNo)
+    fetchData(pageNo,selected, keyWord) {
+      let url = '/api/list/'+pageNo;
+      if(selected != null && keyWord != null) {
+        url += '?'+selected+'='+keyWord;
+      }
+      axios.get(url)
         .then((res) => {
           this.boardList = res.data.list.content
 
@@ -80,7 +84,10 @@ export default {
             pageNumber: res.data.list.number,
             pageSize: res.data.list.size,
             totalPages: res.data.list.totalPages,
-            totalElements: res.data.list.totalElements
+            totalElements: res.data.list.totalElements,
+            selected: selected,
+            keyWord: keyWord
+
           })
         })
       .catch((err) => {
@@ -91,7 +98,11 @@ export default {
       this.$router.push('/content/'+boardId)
     },
     search(selected, keyWord) {
-      window.alert(selected + keyWord);
+      if(this.selected && this.keyWord) {
+        this.fetchData(0 ,selected, keyWord)
+      }else {
+        window.alert("검색어를 입력해주세요.")
+      }
 
     }
   }
