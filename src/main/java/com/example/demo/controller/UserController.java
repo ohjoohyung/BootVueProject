@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 import java.util.Map;
 
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @RestController
 @AllArgsConstructor
 public class UserController {
