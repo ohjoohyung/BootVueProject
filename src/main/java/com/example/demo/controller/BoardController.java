@@ -20,7 +20,7 @@ public class BoardController {
     }
 
     @GetMapping("/content/{id}")
-    public Map<String, Object> content(@PathVariable Long id) {
+    public Map<String, Object> content(@PathVariable long id) {
         return boardService.readBoard(id);
     }
 
@@ -30,7 +30,7 @@ public class BoardController {
     }
 
     @GetMapping("/delete/{id}")
-    public Map<String, Object> delete(@PathVariable Long id) {
+    public Map<String, Object> delete(@PathVariable long id) {
         return boardService.deleteBoard(id);
     }
 

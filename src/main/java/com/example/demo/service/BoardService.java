@@ -43,7 +43,7 @@ public class BoardService {
     }
 
     //게시글 상세보기
-    public Map<String, Object> readBoard(Long id) {
+    public Map<String, Object> readBoard(long id) {
         Map<String, Object> resultMap = new HashMap<>();
 
         Optional<Board> getBoard = boardRepository.findById(id);
@@ -93,7 +93,7 @@ public class BoardService {
     }
 
     //게시글 삭제하기
-    public Map<String, Object> deleteBoard(Long id) {
+    public Map<String, Object> deleteBoard(long id) {
         Map<String, Object> resultMap = new HashMap<>();
 
         try {

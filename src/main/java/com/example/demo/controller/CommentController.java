@@ -18,22 +18,22 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/write/{boardNo}")
-    public Map<String, Object> write(@RequestBody Comment comment, @PathVariable Long boardNo) {
+    public Map<String, Object> write(@RequestBody Comment comment, @PathVariable long boardNo) {
         return commentService.insertComment(comment, boardNo);
     }
 
-    /*@PostMapping("/modify/{boardNo}")
-    public Map<String, Object> modify(@RequestBody Comment comment, @PathVariable Long boardNo) {
-        return commentService.updateComment(comment);
+    @PostMapping("/modify/{boardNo}")
+    public Map<String, Object> modify(@RequestBody Comment comment, @PathVariable long boardNo) {
+        return commentService.updateComment(comment, boardNo);
     }
 
     @GetMapping("/delete/{boardNo}/{commentNo}")
-    public Map<String, Object> delete(@PathVariable Long boardNo, @PathVariable Long commentNo) {
+    public Map<String, Object> delete(@PathVariable long boardNo, @PathVariable long commentNo) {
         return commentService.deleteComment(boardNo, commentNo);
     }
 
     @GetMapping("/list/{boardNo}")
-    public Map<String, Object> list(@PathVariable Long boardNo) {
+    public Map<String, Object> list(@PathVariable long boardNo) {
         return commentService.readCommentList(boardNo);
-    }*/
+    }
 }
