@@ -22,7 +22,7 @@ export default {
     join() {
       if(this.email && this.password && this.name) {
         const that = this
-        axios.post('/api/join', {
+        axios.post('/api/user/join', {
           email : this.email,
           password : this.password,
           name : this.name

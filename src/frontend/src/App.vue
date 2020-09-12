@@ -15,7 +15,8 @@ import Footer from "@/components/main/footer/Footer";
 export default {
   name: 'App',
   components: {
-    Footer, 'Header' : Header
+    'Footer' : Footer,
+    'Header' : Header
   },
 
   //포트9090이랑 연결 test (나중에 지울것)

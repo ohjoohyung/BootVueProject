@@ -69,7 +69,9 @@ export default {
   },
   methods: {
     fetchData(pageNo,selected, keyWord) {
-      let url = '/api/list/'+pageNo;
+      let url = '/api/board/list/'+pageNo;
+
+      //검색을 했을 경우 url
       if(selected != null && keyWord != null) {
         url += '?'+selected+'='+keyWord;
       }

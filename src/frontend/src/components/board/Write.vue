@@ -22,7 +22,7 @@ export default {
   methods: {
    write() {
      if(this.title.length > 0 && this.content.length > 0) {
-       axios.post('/api/write', {
+       axios.post('/api/board/write', {
          userName: this.$store.getters.getUserName,
          title: this.title,
          content: this.content

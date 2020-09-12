@@ -118,7 +118,7 @@ export default new Vuex.Store({
     actions: {
         LOGIN({ commit }, {email, password}) {
             return axios
-                .post('/api/login', {email, password})
+                .post('/api/user/login', {email, password})
                 .then(({data}) => {
                     //LOGIN mutations 실행
                     commit("LOGIN", data)

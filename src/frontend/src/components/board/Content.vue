@@ -13,13 +13,19 @@
       <button v-if="userNameCheck === true" @click="board_delete">삭제</button>
       <button @click="goBack">뒤로가기</button>
     </div>
+    <Comment v-bind:boardNo="board.id"/>
 
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Comment from "@/components/comment/Comment";
+
 export default {
+  components : {
+    'Comment' : Comment
+  },
   data() {
     return {
       board: {
@@ -45,7 +51,7 @@ export default {
   },
   methods: {
     fetchData() {
-      axios.get('/api/content/'+this.$route.params.id)
+      axios.get('/api/board/content/'+this.$route.params.id)
       .then((res) => {
         if(res.data.result === 1) {
           this.board = res.data.board
@@ -62,7 +68,7 @@ export default {
     },
     board_delete() {
       if(window.confirm('게시글을 삭제하시겠습니까?')) {
-        axios.get('/api/delete/'+this.$route.params.id)
+        axios.get('/api/board/delete/'+this.$route.params.id)
             .then((res) => {
           window.alert(res.data.msg)
             if(res.data.result === 1) {

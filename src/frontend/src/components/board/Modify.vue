@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     fetchData() {
-      axios.get('/api/content/'+this.$route.params.id)
+      axios.get('/api/board/content/'+this.$route.params.id)
       .then((res) => {
         this.board = null
         if(res.data.result === 1) {
@@ -46,7 +46,7 @@ export default {
     modify() {
       if(this.board.title.length > 0 && this.board.content.length > 0) {
         if(window.confirm('게시글을 수정하시겠습니까?')) {
-          axios.post('/api/modify', this.board
+          axios.post('/api/board/modify', this.board
           ).then((res) => {
             window.alert(res.data.msg)
             if(res.data.result === 1) {
