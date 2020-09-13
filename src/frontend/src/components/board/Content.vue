@@ -13,7 +13,7 @@
       <button v-if="userNameCheck === true" @click="board_delete">삭제</button>
       <button @click="goBack">뒤로가기</button>
     </div>
-    <Comment v-bind:boardNo="board.id"/>
+    <Comment />
 
   </div>
 </template>
@@ -27,6 +27,7 @@ export default {
     'Comment' : Comment
   },
   data() {
+
     return {
       board: {
         id: '',
@@ -51,10 +52,12 @@ export default {
   },
   methods: {
     fetchData() {
+
       axios.get('/api/board/content/'+this.$route.params.id)
       .then((res) => {
         if(res.data.result === 1) {
           this.board = res.data.board
+
         }else {
           window.alert(res.data.msg)
           this.$router.replace('/')

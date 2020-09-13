@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //jwt 토큰 기반 인증이므로 세션 필요없으니 생성 안함
                 .and()
                 .authorizeRequests() //다음 리퀘스트에 대한 사용권한 체크
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/admin/*").hasRole("ADMIN")
+                .antMatchers("/api/user/*").hasRole("USER")
                 .anyRequest().permitAll() //그외 나머지 요청 누구나 접근 가능
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

@@ -13,20 +13,18 @@
 import axios from 'axios'
 
 export default {
-  props: ['boardNo'],
   data() {
     return {
-      commentList : '',
-      propBoardNo: this.boardNo
+      commentList : ''
     }
   },
   created() {
-    this.fetchData()
+    this.fetchCommentData()
   },
   methods : {
-    fetchData() {
-      window.alert(this.propBoardNo)
-      axios.get('/api/comment/list/' + this.propBoardNo)
+    fetchCommentData() {
+      
+      axios.get('/api/comment/list/' + this.$route.params.id)
       .then((res) => {
         this.commentList = res.data.list
       }).catch((err) => {

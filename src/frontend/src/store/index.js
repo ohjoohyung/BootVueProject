@@ -118,20 +118,23 @@ export default new Vuex.Store({
     actions: {
         LOGIN({ commit }, {email, password}) {
             return axios
-                .post('/api/user/login', {email, password})
+                .post('/api/login', {email, password})
                 .then(({data}) => {
                     //LOGIN mutations 실행
                     commit("LOGIN", data)
 
                     //모든 HTTP 요청 헤더에 Authorization 추가
                     axios.defaults.headers.common['Authorization'] = `Bearer ${data}`;
+                }).catch(() => {
+                     console.log("login fail");
                 })
+
         },
         LOGOUT({ commit }) {
             //HTTP request header값 제거
             axios.defaults.headers.common["Authorization"] = undefined
             commit("LOGOUT")
-        }
+        },
     },
 
 

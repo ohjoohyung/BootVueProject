@@ -29,7 +29,7 @@ public class JwtTokenProvider {
 
     private long tokenVaildMilisecond = 1000L * 30 * 60; //30분만 토큰 유효
 
-    private  final UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     //객체 초기화, secretKey를 Base64로 인코딩
    @PostConstruct
