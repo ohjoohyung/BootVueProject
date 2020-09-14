@@ -13,6 +13,7 @@
       <button v-if="userNameCheck === true" @click="board_delete">삭제</button>
       <button @click="goBack">뒤로가기</button>
     </div>
+
     <Comment />
 
   </div>
@@ -48,7 +49,8 @@ export default {
   computed: {
     userNameCheck() {
         return this.$store.getters.getUserName === this.board.userName
-    }
+    },
+
   },
   methods: {
     fetchData() {

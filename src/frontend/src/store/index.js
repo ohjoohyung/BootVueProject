@@ -54,6 +54,7 @@ export default new Vuex.Store({
                 return parseJwt(state.accessToken).name;
             }
         },
+
         getPaging: function (state) {
             return state.paging;
         }
