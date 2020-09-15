@@ -14,18 +14,18 @@
       <button @click="goBack">뒤로가기</button>
     </div>
 
-    <Comment />
+    <CommentList />
 
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Comment from "@/components/comment/Comment";
+import CommentList from "@/components/comment/CommentList";
 
 export default {
   components : {
-    'Comment' : Comment
+    CommentList
   },
   data() {
 

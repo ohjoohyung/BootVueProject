@@ -47,7 +47,6 @@ public class CommentService {
             resultMap.put("result", -3);
             resultMap.put("msg", "처리 중 문제가 발생했습니다.");
         }
-        resultMap.put("list", commentRepository.getCommentsByBoardNo(boardNo));
         return  resultMap;
     }
 
