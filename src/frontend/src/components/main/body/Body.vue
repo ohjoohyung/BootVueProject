@@ -1,12 +1,15 @@
 <template>
   <div>
-    <h1>메인 페이지</h1>
+    <v-container>
+    <h1>자유게시판</h1>
     <div>
       <router-link v-if="isAuthenticated" to="/write">글쓰기</router-link>
     </div>
     <div>
-    <table style="margin: 0px auto;">
+    <v-simple-table style="margin: 0px auto; width: 100%">
+      <thead>
       <th>번호</th><th>제목</th><th>작성자</th><th>작성일</th>
+      </thead>
       <tbody v-for="(item) in boardList" :key="item.id">
         <tr>
           <td>{{item.id}}</td>
@@ -15,19 +18,29 @@
           <td>{{item.modifyDate}}</td>
         </tr>
       </tbody>
-    </table>
+    </v-simple-table>
     </div>
-    <div>
-      <select v-model="selected">
-        <option v-for="option in options" v-bind:key="option.value" v-bind:value="option.value">{{option.text}}</option>
-      </select>
-      <input type="text" v-model="keyWord" placeholder="검색어를 입력해주세요">
-      <button @click="search(selected, keyWord)">검색</button>
-    </div>
+
+    <v-row style="width: 50%; margin: 0px auto;">
+      <v-col cols="4">
+      <v-select v-model="selected" v-bind:items="options" outlined dense> </v-select>
+      </v-col>
+      <v-col cols="7">
+        <v-text-field
+            v-model="keyWord"
+            placeholder="검색어를 입력해주세요"
+            outlined
+            dense
+            append-icon="mdi-search-web"
+            @click:append="search(selected, keyWord)"
+        /></v-col>
+    </v-row>
     <div>
       <Paging/>
     </div>
+    </v-container>
   </div>
+
 </template>
 
 <script>

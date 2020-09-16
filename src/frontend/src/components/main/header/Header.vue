@@ -1,14 +1,14 @@
 <template>
   <div>
-        <router-link v-if="isAuthenticated == null" to="/join">회원가입</router-link>
-        &nbsp;
-        <router-link v-if="isAuthenticated == null" to="/login">로그인</router-link>
-       &nbsp;
-        <a href="" v-if="isAuthenticated != null" @click.prevent="logout">로그아웃</a>
-        &nbsp;
-        <router-link v-if="isAuthenticated != null" to="/me">Me</router-link>
 
-  </div>
+    <v-toolbar>
+      <v-spacer></v-spacer>
+      <router-link v-if="isAuthenticated == null" to="/join">회원가입</router-link>
+      <router-link v-if="isAuthenticated == null" to="/login">로그인</router-link>
+      <a href="" v-if="isAuthenticated != null" @click.prevent="logout">로그아웃</a>
+      <router-link v-if="isAuthenticated != null" to="/me">Me</router-link>
+    </v-toolbar>
+   </div>
 </template>
 
 <script>
