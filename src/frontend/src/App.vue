@@ -2,9 +2,17 @@
   <v-app>
   <div id="app">
 
-    <Header/>
-    <router-view/>
-    <Footer/>
+
+
+      <Header/>
+      <router-view/>
+      <Footer/>
+
+
+
+
+
+
   </div>
   </v-app>
 </template>
@@ -13,6 +21,7 @@
 import request from "request"
 import Header from "@/components/main/header/Header";
 import Footer from "@/components/main/footer/Footer";
+
 export default {
   name: 'App',
   components: {

@@ -1,25 +1,29 @@
 <template>
-  <div>
-    <button v-on:click="goPage(1, myPaging.selected, myPaging.keyWord)">&lt;&lt;</button>
-    <button v-on:click="goPage(myPaging.prevPage, myPaging.selected, myPaging.keyWord)">&lt;</button>
-    <span v-for="index in myPaging.pageNumberList"
+  <v-container class="mt-2">
+    <v-item-group active-class="primary">
+      <v-btn text x-small v-on:click="goPage(1, myPaging.selected, myPaging.keyWord)"><v-icon>mdi-chevron-double-left</v-icon></v-btn>
+      <v-btn class="ml-1" text x-small v-on:click="goPage(myPaging.prevPage, myPaging.selected, myPaging.keyWord)"><v-icon>mdi-chevron-left</v-icon></v-btn>
+      <v-item
+          v-for="index in myPaging.pageNumberList"
           v-bind:key="index"
-    >
-      <span v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
-            v-if="index === myPaging.pageNumber"
-            v-text="index"
-            style="font-weight: bold"
+          v-slot:default="{ active, toggle }"
       >
-      </span>
-      <span v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
-            v-else
-            v-text="index"
-      >
-      </span>
-    </span>
-    <button v-on:click="goPage(myPaging.nextPage, myPaging.selected, myPaging.keyWord)">&gt;</button>
-    <button v-on:click="goPage(myPaging.endPage, myPaging.selected, myPaging.keyWord)">&gt;&gt;</button>
-  </div>
+        <v-btn text
+               x-small
+            :input-value="active"
+            @click="toggle"
+            v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
+            class="ml-1 text-md-body-1"
+        >
+          {{ index }}
+        </v-btn>
+      </v-item>
+
+      <v-btn class="ml-1" text x-small v-on:click="goPage(myPaging.nextPage, myPaging.selected, myPaging.keyWord)"><v-icon>mdi-chevron-right</v-icon></v-btn>
+      <v-btn class="ml-1" text x-small v-on:click="goPage(myPaging.endPage, myPaging.selected, myPaging.keyWord)"><v-icon>mdi-chevron-double-right</v-icon></v-btn>
+
+    </v-item-group>
+  </v-container>
 </template>
 
 <script>

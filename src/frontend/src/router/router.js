@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Body from "@/components/main/body/Body";
-import Join from "@/components/join/Join";
-import Login from "@/components/login/Login";
-import Me from "@/components/user/Me";
-import Write from "@/components/board/Write";
-import Content from "@/components/board/Content";
-import Modify from "@/components/board/Modify";
+
+const Content = () => import("@/components/board/Content")
+const Body = () => import("@/components/main/body/Body")
+const Join = () => import("@/components/join/Join")
+const Login = () => import("@/components/login/Login")
+const Me = () => import("@/components/user/Me")
+const Write = () => import("@/components/board/Write")
+const Modify = () => import("@/components/board/Modify")
+
 Vue.use(Router)
 
 const requireAuth = () => (from, to, next) => {

@@ -2,9 +2,7 @@
   <div>
     <v-container>
     <h1>자유게시판</h1>
-    <div>
-      <router-link v-if="isAuthenticated" to="/write">글쓰기</router-link>
-    </div>
+
     <div>
     <v-simple-table style="margin: 0px auto; width: 100%">
       <thead>
@@ -20,12 +18,18 @@
       </tbody>
     </v-simple-table>
     </div>
+      <div>
+        <router-link v-if="isAuthenticated" to="/write">글쓰기</router-link>
+      </div>
 
-    <v-row style="width: 50%; margin: 0px auto;">
+
+      <Paging/>
+
+    <v-row style="width: 40%; margin: 0px auto;">
       <v-col cols="4">
-      <v-select v-model="selected" v-bind:items="options" outlined dense> </v-select>
+      <v-select class="text-sm-body-2" v-model="selected" v-bind:items="options" outlined dense> </v-select>
       </v-col>
-      <v-col cols="7">
+      <v-col cols="8">
         <v-text-field
             v-model="keyWord"
             placeholder="검색어를 입력해주세요"
@@ -36,7 +40,7 @@
         /></v-col>
     </v-row>
     <div>
-      <Paging/>
+
     </div>
     </v-container>
   </div>
