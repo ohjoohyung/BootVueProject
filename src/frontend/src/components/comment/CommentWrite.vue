@@ -1,10 +1,10 @@
 <template>
   <div>
-    <form>
+
     <input type="text" placeholder="댓글을 입력하세요." v-model="content">
       <button @click="comment_write">댓글 등록</button>
       <button type="reset">취소</button>
-    </form>
+
 
   </div>
 </template>

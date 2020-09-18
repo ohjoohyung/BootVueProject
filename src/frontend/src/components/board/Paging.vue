@@ -1,6 +1,6 @@
 <template>
   <v-container class="mt-2">
-    <v-item-group active-class="primary">
+    <v-item-group active-class="primary" mandatory>
       <v-btn text x-small v-on:click="goPage(1, myPaging.selected, myPaging.keyWord)"><v-icon>mdi-chevron-double-left</v-icon></v-btn>
       <v-btn class="ml-1" text x-small v-on:click="goPage(myPaging.prevPage, myPaging.selected, myPaging.keyWord)"><v-icon>mdi-chevron-left</v-icon></v-btn>
       <v-item
@@ -10,10 +10,11 @@
       >
         <v-btn text
                x-small
-            :input-value="active"
-            @click="toggle"
-            v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
-            class="ml-1 text-md-body-1"
+              :input-value="active"
+              @click="toggle"
+              v-on:click="goPage(index, myPaging.selected, myPaging.keyWord)"
+              class="ml-1 text-md-body-1"
+
         >
           {{ index }}
         </v-btn>
@@ -41,18 +42,20 @@ export default {
         endPage: 0, //끝 페이지
         pageNumberList: [1], //페이지 번호 리스트
         selected: '',
-        keyWord: ''
+        keyWord: '',
+        
       }
     }
   },
   created() {
     this.myPaging = this.$store.getters.getPaging
+
   },
   methods: {
     //이벤트 버스
     goPage(pageNo, selected, keyWord) {
       this.$EventBus.$emit('goPage', (pageNo - 1), selected, keyWord)
-    }
+    },
   }
 }
 </script>
