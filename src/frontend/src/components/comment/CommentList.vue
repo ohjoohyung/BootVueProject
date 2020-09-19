@@ -1,11 +1,12 @@
 <template>
   <div>
-    <CommentWrite :fetchCommentData="fetchCommentData"/>
-    <p>댓글영역</p>
 
-    <div v-for="(item) in commentList" :key="item.id">
+
+    <div v-for="(item, i) in commentList" :key="item.id">
       <Comment :commentObj="item" :fetchCommentData="fetchCommentData"/>
+      <v-divider v-if="i != commentList.length - 1"></v-divider>
     </div>
+    <CommentWrite :fetchCommentData="fetchCommentData"/>
   </div>
 </template>
 

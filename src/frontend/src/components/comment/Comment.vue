@@ -1,11 +1,28 @@
 <template>
   <div>
-    <span>작성자 : {{commentObj.userName}}</span>&nbsp;
-    <span v-if="!modifyCheck">내용 : {{commentObj.content}}</span>&nbsp;
-    <span v-else><input type="text" v-model="commentObj.content"></span>
-    <span>작성일 : {{commentObj.modifyDate}}</span>
-    <button v-if="getUserName() === commentObj.userName" @click="comment_modify(modifyCheck)">수정</button>
-    <button v-if="getUserName() === commentObj.userName" @click="comment_delete(commentObj.id)">삭제</button>
+    <v-card class="ma-3" style="border: none" outlined min-height="20">
+      <v-card-title class="text-left">
+
+        <span class="text-body-1 mr-2">{{commentObj.userName}}</span>
+        <span class="text-body-2 text--secondary mr-2">|</span>
+        <span class="text-body-2 text--secondary mr-2">{{commentObj.modifyDate}}</span>
+        <v-btn fab text x-small v-if="getUserName() === commentObj.userName" @click="comment_modify(modifyCheck)">
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
+        <v-btn fab text x-small v-if="getUserName() === commentObj.userName" @click="comment_delete(commentObj.id)">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </v-card-title>
+      <v-card-text class="text-left">
+        <span v-if="!modifyCheck">{{commentObj.content}}</span>&nbsp;
+        <span v-else><input type="text" v-model="commentObj.content"></span>
+      </v-card-text>
+
+
+
+
+    </v-card>
+
   </div>
 
 </template>

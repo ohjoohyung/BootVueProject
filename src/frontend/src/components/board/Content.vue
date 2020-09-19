@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <v-card style="width: 60%" class="mx-auto mt-2" min-height="600">
+    <v-card style="width: 60%; border: none" class="mx-auto mt-2" outlined min-height="600">
       <v-card-title>{{board.title}}</v-card-title>
       <v-divider class="mx-4"></v-divider>
       <v-card-subtitle class="text-right">
@@ -22,7 +22,7 @@
           </v-col>
 
           <v-col cols="4" class="text-right">
-            <v-btn outlined class="ma-2" @click="goBack">뒤로가기</v-btn>
+            <v-btn dark class="ma-2" @click="goBack">뒤로가기</v-btn>
           </v-col>
         </v-row>
 
@@ -31,7 +31,7 @@
 
 
 
-
+      <v-divider class="mx-4"></v-divider>
     <CommentList />
     </v-card>
   </div>

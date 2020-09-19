@@ -1,9 +1,18 @@
 <template>
-  <div>
+  <div v-if="isAuthenticated" class="ma-3" style="height: 300px">
 
-    <input type="text" placeholder="댓글을 입력하세요." v-model="content">
-      <button @click="comment_write">댓글 등록</button>
-      <button type="reset">취소</button>
+    <v-textarea
+        outlined
+        clearable
+        clear-icon="mdi-close"
+        placeholder="댓글을 입력하세요."
+        v-model="content"
+        rows="4"
+    />
+    <div class="text-right">
+      <v-btn outlined @click="comment_write">댓글 등록</v-btn>
+    </div>
+
 
 
   </div>
@@ -11,6 +20,7 @@
 
 <script>
 import axios from "axios";
+import store from "@/store";
 
 export default {
   props: {
@@ -20,6 +30,11 @@ export default {
     return{
       content: ''
     }
+  },
+  computed: {
+    isAuthenticated() {
+      return store.getters.isAuthenticated
+    },
   },
   methods: {
     comment_write() {
