@@ -7,10 +7,13 @@ import vuetify from './plugins/vuetify';
 Vue.config.productionTip = false
 Vue.prototype.$EventBus = new Vue();
 
+
 new Vue({
   render: h => h(App),
   router,
   store,
   vuetify,
-  components: { App }
+  components: {
+    App
+  }
 }).$mount('#app')
