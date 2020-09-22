@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 20%" class="mx-auto">
+  <div style="width: 20%; min-height: 500px" class="mx-auto mt-6">
     <h1>회원가입</h1>
     <ValidationObserver ref="observer">
         <ValidationProvider v-slot="{errors}" name="E-mail" rules="required|email">
@@ -7,7 +7,6 @@
               v-model="email"
               :error-messages="errors"
               label="E-mail"
-              required
           ></v-text-field>
         </ValidationProvider>
         <ValidationProvider v-slot="{errors}" name="Password" rules="required|password">
@@ -16,7 +15,6 @@
               :type="'password'"
               :error-messages="errors"
               label="Password"
-              required
           ></v-text-field>
         </ValidationProvider>
       <ValidationProvider v-slot="{errors}" name="Password Confirm" rules="required|confirm:@Password">
@@ -25,7 +23,6 @@
             :type="'password'"
             :error-messages="errors"
             label="Password Confirmation"
-            required
         ></v-text-field>
       </ValidationProvider>
         <ValidationProvider v-slot="{errors}" name="Name" rules="required|max:10|min:2">
@@ -34,10 +31,11 @@
               :error-messages="errors"
               :counter="10"
               label="Name"
-              required
           ></v-text-field>
         </ValidationProvider>
-        <v-btn @click="join">가입</v-btn>
+
+        <v-btn dark @click="join" class="mr-2">가입</v-btn>
+        <v-btn outlined @click="goBack">취소</v-btn>
     </ValidationObserver>
   </div>
 </template>
@@ -120,6 +118,9 @@ export default {
         })
 
 
+    },
+    goBack() {
+      this.$router.replace('/')
     }
   }
 }

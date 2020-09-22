@@ -127,7 +127,7 @@ export default new Vuex.Store({
                     //모든 HTTP 요청 헤더에 Authorization 추가
                     axios.defaults.headers.common['Authorization'] = `Bearer ${data}`;
                 }).catch(() => {
-                     console.log("login fail");
+                     return 'E-mail이나 비밀번호가 일치하지 않습니다.'
                 })
 
         },

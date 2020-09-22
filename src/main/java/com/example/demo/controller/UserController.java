@@ -43,16 +43,12 @@ public class UserController {
 
     //로그인
     @PostMapping("/login")
-    public String login(@RequestBody Map<String, String> user) {
-        System.out.println("1");
+    public String login(@RequestBody Map<String, String> user) { ;
         User member = userRepository.findByEmail(user.get("email"))
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
-        System.out.println("2");
         if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
-            System.out.println("3");
             throw new IllegalArgumentException("잘못된 비밀번호 입니다.");
         }
-        System.out.println("4");
         return jwtTokenProvider.createToken(member.getUsername(), member.getName(), member.getRoles());
     }
 }
