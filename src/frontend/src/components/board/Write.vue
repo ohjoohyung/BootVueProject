@@ -1,18 +1,31 @@
 <template>
   <div>
-    <h1>글쓰기</h1>
-    <div>
-      <input type="text" placeholder="제목" v-model="title">
-      <textarea placeholder="내용" v-model="content"></textarea>
-      <button @click="write">작성</button>
-      <button @click="cancel">취소</button>
-    </div>
+      <h1>글쓰기</h1>
+      <div>
+        <v-text-field
+            placeholder="제목"
+            v-model="title"
+            outlined
+            dense
+            class="mx-auto"
+            style="width: 60%"
+        ></v-text-field>
+        <!--      <textarea placeholder="내용" v-model="content"></textarea>-->
+        <EditorTiptap v-model="content"/>
+        <v-btn @click="write">작성</v-btn>
+        <v-btn @click="cancel">취소</v-btn>
+      </div>
+
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import EditorTiptap from "@/components/board/EditorTiptap";
 export default {
+  components: {
+    EditorTiptap
+  },
   data() {
     return {
       title: '',

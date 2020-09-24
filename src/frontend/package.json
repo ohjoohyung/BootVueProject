@@ -12,6 +12,8 @@
     "core-js": "^3.6.5",
     "path": "^0.12.7",
     "request": "^2.88.2",
+    "tiptap": "^1.30.0",
+    "tiptap-extensions": "^1.33.0",
     "vee-validate": "^3.3.11",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3",
