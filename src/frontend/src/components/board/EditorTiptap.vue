@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="width: 60%" class="editor">
     <v-row>
       <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
         <div >
@@ -35,10 +35,6 @@
             <v-icon>mdi-format-underline</v-icon>
           </v-btn>
 
-          <v-btn text icon
-                 @click="loadImage(commands.image)">
-            <v-icon>mdi-image</v-icon>
-          </v-btn>
         </div>
       </editor-menu-bar>
     </v-row>
@@ -46,7 +42,9 @@
       <v-col cols=12 >
         <editor-content
             class="editor-box"
-            :editor="editor"/>
+            :editor="editor"
+
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -58,7 +56,8 @@ import { Editor, EditorContent, EditorMenuBar  } from 'tiptap';
 import { Heading,
   Bold,
   Underline,
-  Image } from 'tiptap-extensions';
+    Placeholder
+ } from 'tiptap-extensions';
 export default {
   components: {
     EditorContent,
@@ -66,36 +65,56 @@ export default {
   },
   data() {
     return {
-      editor: new Editor({
-        content: this.editorContent
-        ,
-        extensions:[
-          new Heading({levels: [1,2,3]}),
-          new Bold(),
-          new Underline(),
-          new Image(),
-        ]
-      })
+      editor: null
     }
   },
-  props: ["editorContent"]
-  ,methods:{
-    loadImage:function(command){
-      command({src: "https://66.media.tumblr.com/dcd3d24b79d78a3ee0f9192246e727f1/tumblr_o00xgqMhPM1qak053o1_400.gif"})
-    },
+  mounted() {
+    this.editor = new Editor({
+      content: this.value,
+      onUpdate: ({getHTML}) => {
+        this.$emit('input', getHTML())
+      },
+      extensions:[
+        new Heading({levels: [1,2,3]}),
+        new Bold(),
+        new Underline(),
+        new Placeholder({
+          emptyEditorClass: 'is-editor-empty',
+          emptyNodeClass: 'is-empty',
+          emptyNodeText: 'Write something …',
+          showOnlyWhenEditable: true,
+          showOnlyCurrent: true,
+        }),
+      ]
+    })
+    this.editor.setContent(this.value)
+  },
+  props: ["value"],
+  methods:{
+
 
     }
   ,
   beforeDestroy() {
     this.editor.destroy()
   },
+  watch: {
+    value (val) {
+      if(this.editor && val !== this.value) {
+        this.editor.setContent(val,true)
+      }
+    }
+  }
 };
 </script>
-<style >
+<style lang="scss">
 .editor-box> * {
   border-color: grey;
   border-style: solid;
   border-width: 1px;
+  min-height: 300px;
+  text-align: left;
+  padding: 10px;
 }
 
 .is-active{
@@ -106,4 +125,13 @@ export default {
 /* *:focus {
    outline: none;
 }  */
+.editor p.is-editor-empty:first-child::before {
+  content: attr(data-empty-text);
+  float: left;
+  color: #aaa;
+  pointer-events: none;
+  height: 0;
+  font-style: italic;
+}
+
 </style>

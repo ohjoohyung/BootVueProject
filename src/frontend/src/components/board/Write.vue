@@ -1,19 +1,17 @@
 <template>
-  <div>
+  <div class="mb-7 mt-5">
       <h1>글쓰기</h1>
       <div>
         <v-text-field
             placeholder="제목"
             v-model="title"
-            outlined
             dense
             class="mx-auto"
-            style="width: 60%"
+            style="width: 59%"
         ></v-text-field>
-        <!--      <textarea placeholder="내용" v-model="content"></textarea>-->
         <EditorTiptap v-model="content"/>
-        <v-btn @click="write">작성</v-btn>
-        <v-btn @click="cancel">취소</v-btn>
+        <v-btn @click="write" dark class="mr-2">작성</v-btn>
+        <v-btn @click="cancel" outlined>취소</v-btn>
       </div>
 
   </div>

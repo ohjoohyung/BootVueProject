@@ -9,8 +9,8 @@
         <span class="ml-5">작성일: {{board.modifyDate}}</span>
       </v-card-subtitle>
       <v-card-text style="min-height: 400px">
-        <div class="text-left text--primary">
-          {{board.content}}
+        <div class="text-left text--primary" v-html="board.content">
+        <!-- vue에서 html태그가 있는 내용을 출력할때는 v-html을 이용하자 -->
         </div>
       </v-card-text>
       <v-card-actions>
