@@ -47,6 +47,7 @@ export default {
             if(res.data.result != 1) {
               window.alert(res.data.msg)
             }
+            this.content = ''
             this.fetchCommentData()
           }).catch((err) => {
             window.alert(err)

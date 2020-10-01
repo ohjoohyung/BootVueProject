@@ -81,28 +81,22 @@ export default {
         new Placeholder({
           emptyEditorClass: 'is-editor-empty',
           emptyNodeClass: 'is-empty',
-          emptyNodeText: 'Write something …',
+          emptyNodeText: '글을 작성해주세요.',
           showOnlyWhenEditable: true,
           showOnlyCurrent: true,
         }),
-      ]
+      ],
+
     })
     this.editor.setContent(this.value)
   },
   props: ["value"],
-  methods:{
-
-
-    }
-  ,
   beforeDestroy() {
     this.editor.destroy()
   },
   watch: {
     value (val) {
-      if(this.editor && val !== this.value) {
-        this.editor.setContent(val,true)
-      }
+      if(this.editor) this.editor.setContent(val)
     }
   }
 };

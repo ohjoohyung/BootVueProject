@@ -15,7 +15,13 @@
       </v-card-title>
       <v-card-text class="text-left">
         <span v-if="!modifyCheck">{{commentObj.content}}</span>&nbsp;
-        <span v-else><input type="text" v-model="commentObj.content"></span>
+        <span v-else>
+          <v-text-field
+              v-model="commentObj.content"
+              dense
+              outlined
+          ></v-text-field>
+        </span>
       </v-card-text>
 
 

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import store from "@/store";
 
 const Content = () => import("@/components/board/Content")
 const Body = () => import("@/components/main/body/Body")
@@ -48,7 +48,17 @@ export const router = new Router({
         {
             path: '/write',
             name: "Write",
-            component: Write
+            component: Write,
+            //라우트 가드
+            beforeEnter: (to, from, next) => {
+                if(store.getters.isAuthenticated === undefined) {
+                    window.alert('로그인 후 이용해주시기 바랍니다.')
+                    next('/login')
+                }else {
+                    next()
+                }
+
+            }
         },
         {
             path: '/content/:id',
@@ -56,7 +66,17 @@ export const router = new Router({
         },
         {
             path: '/modify/:id',
-            component: Modify
+            component: Modify,
+            //라우트 가드
+            beforeEnter: (to, from, next) => {
+                if(store.getters.isAuthenticated === undefined) {
+                    window.alert('로그인 후 이용해주시기 바랍니다.')
+                    next('/login')
+                }else {
+                    next()
+                }
+
+            }
         }
     ]
 

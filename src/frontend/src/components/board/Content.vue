@@ -16,7 +16,7 @@
       <v-card-actions>
         <v-row>
           <v-col cols="8" class="text-left">
-            <v-btn outlined class="ma-2" v-if="userNameCheck === true" @click="board_modify">수정</v-btn>
+            <v-btn dark class="ma-2" v-if="userNameCheck === true" @click="board_modify">수정</v-btn>
             <v-btn outlined class="ma-2" v-if="userNameCheck === true" @click="board_delete">삭제</v-btn>
 
           </v-col>
