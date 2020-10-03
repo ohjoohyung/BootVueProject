@@ -6,20 +6,11 @@ const Content = () => import("@/components/board/Content")
 const Body = () => import("@/components/main/body/Body")
 const Join = () => import("@/components/join/Join")
 const Login = () => import("@/components/login/Login")
-const Me = () => import("@/components/user/Me")
 const Write = () => import("@/components/board/Write")
 const Modify = () => import("@/components/board/Modify")
 
 Vue.use(Router)
 
-const requireAuth = () => (from, to, next) => {
-    let isAuthenticated = false
-    if(localStorage.accessToken != null) {
-        isAuthenticated = true
-    }
-    if(isAuthenticated) return next()
-    next('/login?returnPath=me')
-}
 
 export const router = new Router({
     mode: 'history',
@@ -38,12 +29,6 @@ export const router = new Router({
             path:'/login',
             name: 'Login',
             component: Login
-        },
-        {
-            path:'/me',
-            name: 'Me',
-            component: Me,
-            beforeEnter: requireAuth()
         },
         {
             path: '/write',
