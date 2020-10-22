@@ -22,7 +22,9 @@
         <v-btn type="submit" class="mr-2" dark>로그인</v-btn>
         <v-btn outlined @click="goBack">취소</v-btn>
       </form>
+
     </ValidationObserver>
+    <v-btn class="mt-5" dark @click="naver">네이버 로그인</v-btn>
 <!--    <v-form @submit.prevent="onSubmit(email, password)">-->
 <!--      <v-text-field-->
 <!--        v-model="email"-->
@@ -89,6 +91,16 @@ export default {
     },
     goBack() {
       this.$router.replace('/')
+    },
+    naver() {
+      const client_ID = '7mm5SCA3KFMUmaEjph6u';
+      const redirectURI = 'http%3A%2F%2Flocalhost%3A9000%2Fapi%2Flogin';
+      const state = 123;
+
+      window.location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code'
+      + '&client_id=' + client_ID
+      + '&redirect_uri=' + redirectURI
+      + '&state=' + state
     }
 
 
