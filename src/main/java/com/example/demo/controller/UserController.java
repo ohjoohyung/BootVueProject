@@ -4,11 +4,9 @@ import com.example.demo.config.security.JwtTokenProvider;
 import com.example.demo.entitiy.User;
 import com.example.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -30,6 +28,8 @@ public class UserController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
 
+
+
     //회원가입
     @PostMapping("/join")
     public Long join(@RequestBody Map<String, String> user) {
@@ -49,6 +49,10 @@ public class UserController {
         if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호 입니다.");
         }
+        System.out.println(member.getRoles().toString());
         return jwtTokenProvider.createToken(member.getUsername(), member.getName(), member.getRoles());
     }
+
+
+
 }

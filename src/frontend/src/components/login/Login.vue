@@ -94,7 +94,7 @@ export default {
     },
     naver() {
       const client_ID = '7mm5SCA3KFMUmaEjph6u';
-      const redirectURI = 'http%3A%2F%2Flocalhost%3A9000%2Fapi%2Flogin';
+      const redirectURI = 'http%3A%2F%2Flocalhost%3A9000%2Fapi%2Fnaver%2Flogin';
       const state = 123;
 
       window.location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code'

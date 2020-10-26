@@ -8,7 +8,7 @@ const Join = () => import("@/components/join/Join")
 const Login = () => import("@/components/login/Login")
 const Write = () => import("@/components/board/Write")
 const Modify = () => import("@/components/board/Modify")
-
+const Agreement = () => import("@/components/login/Agreement")
 Vue.use(Router)
 
 
@@ -29,6 +29,11 @@ export const router = new Router({
             path:'/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path:'/agreement',
+            name: 'Agreement',
+            component: Agreement
         },
         {
             path: '/write',

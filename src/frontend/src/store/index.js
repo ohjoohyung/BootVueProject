@@ -131,6 +131,11 @@ export default new Vuex.Store({
                 })
 
         },
+        NAVERLOGIN({commit}, token) {
+            window.alert(token)
+            commit("LOGIN",token)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        },
         LOGOUT({ commit }) {
             //HTTP request header값 제거
             axios.defaults.headers.common["Authorization"] = undefined
